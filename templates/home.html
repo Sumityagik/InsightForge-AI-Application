@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InsightForge AI — Transform Information into Intelligence</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+  <nav class="if-nav">
+    <a class="brand" href="{{ url_for('home') }}">InsightForge AI</a>
+    <div class="links">
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('about') }}">About</a>
+    </div>
+    <div class="cta-group">
+      <a class="btn btn-outline" href="{{ url_for('auth.login_page') }}">Log In</a>
+      <a class="btn btn-primary" href="{{ url_for('auth.register_page') }}">Start Researching</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="eyebrow">AI Research Assistant</div>
+    <h1>Transform Information into Intelligence.</h1>
+    <p class="lede">
+      Upload documents, ask questions, and get grounded answers. InsightForge AI reads,
+      summarizes, and reasons over your research so you don't have to do it alone.
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="{{ url_for('auth.register_page') }}">Start Researching</a>
+      <a class="btn btn-outline" href="{{ url_for('about') }}">Learn More</a>
+    </div>
+  </header>
+
+  <section class="features">
+    <div class="feature-card">
+      <div class="icon">&#128196;</div>
+      <h3>Document Analysis</h3>
+      <p>Upload PDFs, Word docs, spreadsheets, or images — get summaries, keywords, and named entities in seconds.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">&#128172;</div>
+      <h3>Conversational Research</h3>
+      <p>Ask follow-up questions naturally. InsightForge remembers context across the whole conversation.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">&#127908;</div>
+      <h3>Voice Input</h3>
+      <p>Speak your questions instead of typing. Review and edit the transcript before sending.</p>
+    </div>
+  </section>
+
+  <footer style="text-align:center; padding: 30px 24px 50px; color: var(--if-gray); font-size: 13px; border-top: 1px solid var(--if-border);">
+    InsightForge AI — an original research assistant built with Flask, LangChain, and Groq.
+  </footer>
+</body>
+</html>

@@ -1,0 +1,33 @@
+# Environment
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+
+# Database
+instance/*.db
+instance/*.sqlite3
+
+# Uploads (user data)
+uploads/*
+!uploads/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Model caches
+static/models/*
+!static/models/.gitkeep
+
+# Logs
+*.log

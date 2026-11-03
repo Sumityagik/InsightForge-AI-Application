@@ -1,0 +1,32 @@
+# ===== Core Web Framework =====
+Flask==3.0.3
+Flask-SQLAlchemy==3.1.1
+Flask-Login==0.6.3
+Werkzeug==3.0.4
+python-dotenv==1.0.1
+
+# ===== AI / NLP =====
+langchain==0.3.7
+langchain-groq==0.2.1
+groq==0.11.0
+sentence-transformers==3.2.1
+faiss-cpu==1.9.0
+keybert==0.8.5
+spacy==3.7.5
+transformers==4.46.2
+torch==2.4.1
+
+# ===== Document Processing =====
+PyMuPDF==1.24.13
+python-docx==1.1.2
+pandas==2.2.3
+openpyxl==3.1.5
+pytesseract==0.3.13
+Pillow==10.4.0
+
+# ===== Utilities =====
+gunicorn==23.0.0
+email-validator==2.2.0
+
+# NOTE: after installing spacy, run:
+#   python -m spacy download en_core_web_sm

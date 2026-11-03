@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — InsightForge AI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+  <nav class="if-nav">
+    <a class="brand" href="{{ url_for('home') }}">InsightForge AI</a>
+    <div class="links">
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('about') }}">About</a>
+    </div>
+    <div class="cta-group">
+      <a class="btn btn-outline" href="{{ url_for('auth.login_page') }}">Log In</a>
+      <a class="btn btn-primary" href="{{ url_for('auth.register_page') }}">Start Researching</a>
+    </div>
+  </nav>
+
+  <main class="content-page">
+    <h1>About InsightForge AI</h1>
+    <p class="subtitle">An AI-powered research assistant that reads, analyzes, and discusses your documents with you.</p>
+
+    <h2>What it does</h2>
+    <p>
+      InsightForge AI evolved from an NLP and agentic-AI learning project into a full-stack
+      research assistant. It combines document processing, natural language processing, and
+      a conversational LLM so you can upload a paper, spreadsheet, or image and immediately
+      start asking questions about it — grounded in the actual content, not guesswork.
+    </p>
+
+    <h2>Technology</h2>
+    <div class="stack-grid">
+      <div>Flask + SQLAlchemy backend</div>
+      <div>LangChain + Groq (Llama 3.3) for reasoning</div>
+      <div>spaCy, KeyBERT for NLP extraction</div>
+      <div>Sentence Transformers + FAISS for retrieval</div>
+      <div>PyMuPDF, python-docx, pandas for document parsing</div>
+      <div>Vanilla JS + Web Speech API on the frontend</div>
+    </div>
+
+    <h2>Architecture</h2>
+    <p>
+      The backend is organized into clear layers: Flask blueprints handle HTTP requests,
+      service modules contain business logic, and a dedicated AI/NLP layer manages
+      embeddings, retrieval, and LLM calls. Every conversation, document, and message
+      is scoped to the account that created it.
+    </p>
+  </main>
+</body>
+</html>

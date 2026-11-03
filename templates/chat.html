@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat — InsightForge AI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+</head>
+<body data-user-name="{{ current_user.name }}">
+
+  <div class="chat-layout">
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-header-row">
+          <a class="brand" href="{{ url_for('home') }}">InsightForge AI</a>
+          <button class="sidebar-close-btn" id="sidebar-close-btn" title="Close sidebar">&times;</button>
+        </div>
+        <button class="new-chat-btn" id="new-chat-btn">+ New Chat</button>
+      </div>
+
+      <div class="sidebar-search">
+        <input type="text" id="search-conversations" placeholder="Search conversations...">
+      </div>
+
+      <div class="conversation-list" id="conversation-list">
+        <div class="empty-history">No conversations yet</div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="user-chip">
+          <div class="user-avatar" id="user-avatar">?</div>
+          <div class="user-name" id="user-name-label">Loading...</div>
+        </div>
+        <button class="logout-btn" id="logout-btn" title="Log out">&#9211;</button>
+      </div>
+    </aside>
+
+    <!-- ===== MAIN CHAT ===== -->
+    <main class="main-chat">
+      <div class="chat-topbar">
+        <button class="sidebar-toggle" id="sidebar-toggle">&#9776;</button>
+        <strong id="current-title">InsightForge AI</strong>
+      </div>
+
+      <div class="messages-container" id="messages-container">
+        <div class="welcome-screen" id="welcome-screen">
+          <h1>Where should we start your research?</h1>
+          <p>Ask a question, paste some text, or upload a document to begin.</p>
+          <div class="suggestion-row">
+            <button class="suggestion-chip" data-suggestion="Summarize the key trends in renewable energy adoption.">Summarize a topic</button>
+            <button class="suggestion-chip" data-suggestion="What are the main components of a research paper?">Explain a concept</button>
+            <button class="suggestion-chip" data-suggestion="Help me find key insights from a dataset.">Analyze data</button>
+          </div>
+        </div>
+        <div class="messages-inner" id="messages-inner" style="display:none;"></div>
+      </div>
+
+      <div class="input-area-wrap">
+        <div class="input-area">
+          <div class="file-preview-row" id="file-preview-row"></div>
+
+          <div class="input-box">
+            <button class="icon-btn" id="attach-btn" title="Attach a file (coming in a later sprint)" disabled>&#128206;</button>
+            <input type="file" id="file-input" hidden accept=".pdf,.docx,.txt,.xlsx,.xls,.png,.jpg,.jpeg">
+
+            <textarea id="message-input" rows="1" placeholder="Message InsightForge AI..."></textarea>
+
+            <button class="icon-btn" id="mic-btn" title="Voice input">&#127908;</button>
+            <button class="send-btn" id="send-btn" title="Send" disabled>&#10148;</button>
+          </div>
+
+          <div class="input-hint">InsightForge AI can make mistakes. Verify important information.</div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+</body>
+</html>
