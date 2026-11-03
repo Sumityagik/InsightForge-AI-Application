@@ -41,8 +41,8 @@ Instead of using individual NLP models separately, the project follows an agent-
 ```Application Home  page
       |
   Registered User
-      |      \
-      |If yes \ If no
+      |      \  If no
+      |If yes \ 
       |       register 
     Login    /
       |    /
@@ -95,74 +95,143 @@ Structured AI Report
 
 # 📂 Project Structure
 InsightForge-AI/
-├── app.py                      # App factory, blueprint registration
+                                           # App factory, blueprint registration
+├── app.py     
+
 ├── requirements.txt
+
 ├── .env / .env.example
+
 ├── .gitignore
+
 │
+
 ├── api/
+
 │   ├── __init__.py
+
 │   ├── auth_routes.py
+
 │   ├── chat_routes.py
+
 │   ├── document_routes.py
+
 │   ├── analysis_routes.py
+
 │   └── system_routes.py
+
 │
+
 ├── services/
+
 │   ├── chat_service.py         # conversation/message CRUD + orchestration
+
 │   ├── ai_service.py           # Groq/LangChain calls, prompt assembly
+
 │   ├── document_service.py     # extraction dispatch per file type
+
 │   ├── upload_service.py       # validation, secure storage
+
 │   ├── rag_service.py          # chunk, embed, retrieve
+
 │   └── speech_service.py       # placeholder hooks for server-side STT later
+
 │
+
 ├── src/
+
 │   ├── config.py
+
 │   ├── db.py                   # SQLAlchemy() instance, init_app
+
 │   ├── registry.py             # singleton model loader (spaCy, KeyBERT, SentenceTransformer)
+
 │   ├── orchestrator.py         # ties NLP pipeline + LLM into one pipeline call
+
 │   ├── llm.py                  # LangChain-Groq client wrapper
+
 │   ├── prompts.py              # prompt templates
+
 │   ├── document_loader.py      # PyMuPDF / python-docx / pandas / OCR extraction
+
 │   ├── embeddings.py           # SentenceTransformer wrapper
+
 │   ├── vector_store.py         # FAISS index management (per-document)
+
 │   └── nlp_tools.py            # summarizer, KeyBERT keyword extraction, spaCy NER
+
 │
+
 ├── models/
+
 │   ├── __init__.py
+
 │   ├── user.py
+
 │   ├── conversation.py
+
 │   ├── message.py
+
 │   ├── document.py
+
 │   └── chunk.py
+
 │
+
 ├── utils/
+
 │   ├── decorators.py           # @login_required, @handle_errors
+
 │   ├── validators.py           # file type/size validation
+
 │   └── responses.py            # standard success/error JSON builders
+
 │
+
 ├── templates/
+
 │   ├── base.html
+
 │   ├── home.html
+
 │   ├── chat.html
+
 │   ├── about.html
+
 │   ├── login.html
+
 │   └── register.html
+
 │
+
 ├── static/
+
 │   ├── css/ (main.css, chat.css, auth.css)
+
 │   ├── js/ (chat.js, auth.js, upload.js, voice.js, markdown.js, three-bg.js)
+
 │   ├── images/
+
 │   └── models/
+
 │
+
 ├── uploads/                    # gitignored, user_id-scoped subfolders
+
 ├── instance/                   # sqlite db lives here
+
 └── tests/
+
     ├── test_auth.py
+    
     ├── test_chat.py
+    
     ├── test_documents.py
+    
     ├── test_nlp.py
+    
     └── test_rag.py
+
 
 # 📊 Example Output
 
