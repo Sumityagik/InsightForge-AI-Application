@@ -11,6 +11,7 @@ from src.db import db
 from models import Conversation, Message
 from src.orchestrator import generate_chat_reply
 from src.llm import AIServiceError
+from services import document_service 
 
 logger = logging.getLogger("insightforge")
 
@@ -68,12 +69,13 @@ def delete_conversation(user_id: int, conversation_id: int) -> bool:
     convo = get_owned_conversation(user_id, conversation_id)
     if convo is None:
         return False
+    document_service.delete_conversation_documents(user_id, conversation_id)
     db.session.delete(convo)
     db.session.commit()
     return True
 
 
-def generate_reply(user_message: str, history: list[dict]) -> str:
+def generate_reply(user_message: str, history: list[dict], document_context:str | None = None) -> str:
     """
     Generates a real AI reply via Groq, grounded in the conversation's
     prior messages so multi-turn context is preserved. `history` must be
@@ -86,7 +88,7 @@ def generate_reply(user_message: str, history: list[dict]) -> str:
     error response rather than a 500 traceback.
     """
     try:
-        return generate_chat_reply(user_message, history=history)
+        return generate_chat_reply(user_message, history=history, document_context = document_context)
     except AIServiceError:
         raise
     except Exception:

@@ -212,6 +212,10 @@ function showWelcomeView() {
 // SENDING MESSAGES
 // ============================================================
 async function sendMessage() {
+  // A file is attached: hand off to the upload flow (static/js/upload.js)
+  if (typeof hasPendingFile === "function" && hasPendingFile()) {
+    return sendWithFile();
+  }
   const input = document.getElementById("message-input");
   const content = input.value.trim();
   if (!content || isSending) return;
@@ -310,8 +314,9 @@ function buildMessageElement(role, content) {
 }
 
 function renderMarkdown(text) {
-  if (window.marked) {
-    return marked.parse(text);
+  // Sanitize: AI replies (and uploaded documents) are untrusted content.
+  if (window.marked && window.DOMPurify) {
+    return DOMPurify.sanitize(marked.parse(text));
   }
   // Fallback if the CDN script failed to load: escape HTML, preserve line breaks.
   const escaped = text

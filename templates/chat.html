@@ -6,6 +6,7 @@
   <title>Chat — InsightForge AI</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
 </head>
 <body data-user-name="{{ current_user.name }}">
 
@@ -63,8 +64,8 @@
           <div class="file-preview-row" id="file-preview-row"></div>
 
           <div class="input-box">
-            <button class="icon-btn" id="attach-btn" title="Attach a file (coming in a later sprint)" disabled>&#128206;</button>
-            <input type="file" id="file-input" hidden accept=".pdf,.docx,.txt,.xlsx,.xls,.png,.jpg,.jpeg">
+            <button class="icon-btn" id="attach-btn" title="Attach a document (PDF, DOCX, TXT, XLSX, XLS)">&#128206;</button>
+            <input type="file" id="file-input" hidden accept=".pdf,.docx,.txt,.xlsx,.xls">
 
             <textarea id="message-input" rows="1" placeholder="Message InsightForge AI..."></textarea>
 
@@ -81,5 +82,6 @@
   <div class="toast-container" id="toast-container"></div>
 
   <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/upload.js') }}"></script>
 </body>
 </html>

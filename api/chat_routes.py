@@ -5,9 +5,10 @@ import logging
 from flask import Blueprint, request
 from flask_login import login_required, current_user
 
-from services import chat_service
+from services import chat_service, rag_service
 from src.llm import AIServiceError
 from utils.responses import success, error
+
 
 logger = logging.getLogger("insightforge")
 
@@ -63,7 +64,11 @@ def send_message():
 
     try:
         user_msg = chat_service.add_message(convo.id, "user", content)
-        reply_text = chat_service.generate_reply(content, history)
+        retrieval = rag_service.retrieve_context(convo, content)
+        reply_text = chat_service.generate_reply(content, history, document_context=retrieval.context)
+        source_line = rag_service.source_note(retrieval)
+        if source_line:
+            reply_text += "\n\n" + source_line
         ai_msg = chat_service.add_message(convo.id, "assistant", reply_text)
 
         new_title = chat_service.auto_title_from_message(content) if is_first_message else None

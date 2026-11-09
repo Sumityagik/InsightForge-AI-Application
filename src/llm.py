@@ -39,7 +39,7 @@ def _get_llm():
             api_key=config.GROQ_API_KEY,
             model=config.GROQ_MODEL,
             temperature=0.4,
-            max_tokens=1500,
+            max_tokens=3000,
             timeout=30,
         )
         return _llm_instance

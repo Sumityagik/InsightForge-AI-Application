@@ -553,3 +553,16 @@ html, body {
   .input-area-wrap { padding: 12px 14px 14px; }
   .messages-inner { padding: 0 14px; }
 }
+
+/* ================= SPRINT 5: FILE UPLOAD CHIP ================= */
+.file-chip { min-width: 220px; max-width: 320px; justify-content: space-between; }
+.file-chip .file-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
+.file-chip .file-name { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.file-chip .file-meta { color: var(--if-gray); font-size: 11.5px; }
+
+.file-progress { display: none; height: 3px; background: var(--if-border); border-radius: 2px; overflow: hidden; margin-top: 4px; }
+.file-progress.active { display: block; }
+.file-progress-bar { height: 100%; width: 0; background: var(--if-maroon); transition: width 0.15s ease; }
+
+.typing-indicator .bubble { height: auto; min-height: 18px; flex-wrap: wrap; }
+.typing-indicator .status-text { font-size: 13.5px; color: var(--if-gray); margin-right: 8px; }

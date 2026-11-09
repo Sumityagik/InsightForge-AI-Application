@@ -110,6 +110,9 @@ def _register_blueprints(app):
     from api.chat_routes import chat_bp
     app.register_blueprint(chat_bp)
 
+    from api.document_routes import document_bp
+    app.register_blueprint(document_bp)
+
     from api.analysis_routes import analysis_bp
     app.register_blueprint(analysis_bp)
 

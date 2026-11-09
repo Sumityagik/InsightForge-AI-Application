@@ -15,6 +15,7 @@ logger = logging.getLogger("insightforge")
 _lock = threading.Lock()
 _spacy_model = None
 _keybert_model = None
+_embedding_model = None
 
 
 def get_spacy_model():
@@ -66,3 +67,19 @@ def warm_up():
         get_keybert_model()
     except Exception:
         logger.warning("Could not warm up KeyBERT model at startup.")
+
+
+def get_embedding_model():
+    """Returns the shared sentence-embedding model, loading it on first use."""
+    global _embedding_model
+    if _embedding_model is None:
+        with _lock:
+            if _embedding_model is None:
+                from sentence_transformers import SentenceTransformer
+                from src.embeddings import get_model_name
+
+                name = get_model_name()
+                logger.info("Loading embedding model '%s' (first use, may download ~90 MB)...", name)
+                _embedding_model = SentenceTransformer(name)
+                logger.info("Embedding model loaded.")
+    return _embedding_model
